@@ -29,3 +29,4 @@ qdrant_storage/
 .vscode/
 .idea/
 .DS_Store
+!data/raw/echantillon_*.pdf
