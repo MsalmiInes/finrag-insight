@@ -9,7 +9,7 @@
 - **Membres de l'Équipe :**
   1. Msalmi Ines — Rôle : Lead Data / Retrieval (ingestion, chunking, embeddings, Qdrant, hybrid search, reranker, évaluation Ragas)
   2. Chiheb Aouadi — Rôle : Lead Backend / Frontend / Infra (FastAPI, SSE, interface React, Docker, CI/CD)
-- **Lien du Dépôt GitHub :** `https://github.com/<ton-compte>/finrag-insight`
+- **Lien du Dépôt GitHub :** `https://github.com/MsalmiInes/finrag-insight`
 - **Branche de travail principale :** `main` (protégée)
 
 ---
