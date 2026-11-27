@@ -15,7 +15,8 @@ Client Web (React) -> FastAPI (SSE) -> Embeddings bge-m3 -> Qdrant (dense + spar
 | Membre | Rôle |
 | :--- | :--- |
 | Msalmi Ines | Lead Data / Retrieval |
-| Chiheb Aouadi | Lead Backend / Frontend / Infra |
+| Chiheb Aouadi | Lead Backend / MLOps |
+| Semah Yakoubi | Lead Frontend / Infra |
 
 ## Documentation
 
