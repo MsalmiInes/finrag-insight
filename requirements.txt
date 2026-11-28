@@ -1,0 +1,4 @@
+qdrant-client>=1.12,<1.13
+sentence-transformers
+pymupdf
+python-dotenv

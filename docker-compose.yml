@@ -2,30 +2,46 @@ services:
   qdrant:
     image: qdrant/qdrant:v1.12.4
     container_name: finrag-qdrant
-    ports:
-      - "127.0.0.1:6333:6333"   # API REST + dashboard
-      - "127.0.0.1:6334:6334"   # gRPC
-    volumes:
-      - ./qdrant_storage:/qdrant/storage
     restart: unless-stopped
-
-  postgres:
-    image: postgres:16
-    container_name: finrag-postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Renseigner POSTGRES_PASSWORD dans .env}
-      POSTGRES_DB: finrag
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:${QDRANT_REST_PORT:-6333}:6333"
+      - "127.0.0.1:${QDRANT_GRPC_PORT:-6334}:6334"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - qdrant_data:/qdrant/storage
+    networks:
+      - backend-net
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d finrag"]
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/6333 && echo -e \"GET /healthz HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n\" >&3 && cat <&3 | grep -q \"200 OK\"'"]
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 10s
+
+  db:
+    image: postgres:16
+    container_name: finrag-postgres
     restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Renseigner POSTGRES_PASSWORD dans .env}
+      POSTGRES_DB: ${POSTGRES_DB:-finrag}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-finrag}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
-  pgdata:
+  qdrant_data:
+  postgres_data:
+
+networks:
+  backend-net:
+    driver: bridge
