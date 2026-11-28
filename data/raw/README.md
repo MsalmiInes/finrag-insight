@@ -6,7 +6,7 @@ Les PDF ne sont pas versionnés (taille) : les retélécharger depuis les source
 | Fichier | Société | Exercice | Source (URL) | Pages |
 | :--- | :--- | :-: | :--- | :-: |
 | totalenergies_2024.pdf | TotalEnergies | 2024 | https://totalenergies.com/system/files/documents/totalenergies_document-enregistrement-universel-2024_2025_fr.pdf | 680 |
-| lvmh_2024.pdf | LVMH | 2024 | https://www.bnains.org/archives/communiques/LVMH/20250325_Document_d_enregistrement_universel_2024_LVMH.pdf | 484 |
+| lvmh_2024.pdf | LVMH | 2024 | https://www.lvmh.com/en/press/key-documents (page officielle, rubrique Publications) | 484 |
 | orange_2024.pdf | Orange | 2024 | https://assets.orange.com/medias/domain12751/media101349/404737-yf5e7h0wx1-75.pdf | 558 |
 
 **Convention de citation :** les numéros de page cités par FinRAG-Insight sont les numéros de page du fichier PDF (et non la pagination imprimée, décalée de quelques pages).
